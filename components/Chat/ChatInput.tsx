@@ -4,9 +4,10 @@ import { FC, KeyboardEvent, useEffect, useRef, useState } from "react";
 
 interface Props {
   onSend: (message: Message) => void;
+  disabled: boolean;
 }
 
-export const ChatInput: FC<Props> = ({ onSend }) => {
+export const ChatInput: FC<Props> = ({ onSend, disabled }) => {
   const [content, setContent] = useState<string>();
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -30,10 +31,13 @@ export const ChatInput: FC<Props> = ({ onSend }) => {
     setContent("");
   };
 
+  
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      if (!disabled) {
+        handleSend();
+      }
     }
   };
 
@@ -57,7 +61,7 @@ export const ChatInput: FC<Props> = ({ onSend }) => {
         onKeyDown={handleKeyDown}
       />
 
-      <button onClick={() => handleSend()}>
+      <button onClick={() => handleSend()} disabled={disabled}>
         <IconArrowUp className="absolute right-2 bottom-3 h-8 w-8 hover:cursor-pointer rounded-full p-1 bg-blue-500 text-white hover:opacity-80" />
       </button>
     </div>

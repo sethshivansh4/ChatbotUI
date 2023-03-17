@@ -8,9 +8,10 @@ interface Props {
   messages: Message[];
   loading: boolean;
   onSend: (message: Message) => void;
+  disabled: boolean;
 }
 
-export const Chat: FC<Props> = ({ messages, loading, onSend }) => {
+export const Chat: FC<Props> = ({ messages, loading, onSend, disabled }) => {
   return (
     <div className="flex flex-col rounded-lg px-2 sm:p-4 sm:border border-neutral-300">
       {messages.map((message, index) => (
@@ -29,7 +30,7 @@ export const Chat: FC<Props> = ({ messages, loading, onSend }) => {
       )}
 
       <div className="mt-4 sm:mt-8 bottom-[56px] left-0 w-full">
-        <ChatInput onSend={onSend} />
+        <ChatInput onSend={onSend} disabled={disabled} />
       </div>
     </div>
   );
