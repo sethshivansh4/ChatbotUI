@@ -16,7 +16,7 @@ npm i
 
 **. Provide OpenAI API Key**
 
-Create a .env.local file in the root of the repo with your OpenAI API Key:
+Create a .env.local file in the root of the repo with your OpenAI API Key
 
 
 **. Run App**
